@@ -1,0 +1,101 @@
+{% extends 'fbcampaign/layout3.html' %}
+{% load static %}
+{% block content %}
+<style>
+  .add-button{
+    float : right;
+    background-color: #36918b; /* Green */
+    border: none;
+    color: white;
+    padding:9px 6px 9px 7px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px -3px;
+    cursor: pointer;
+    border-radius: 35px!important;
+    text-decoration: none;
+  }
+  .btn-xs {
+    padding: 5px 9px;
+    border-radius:5px!important;
+ }
+</style>
+<div>
+<h3 class="page-title">
+  Company List <!--<small>user account page sample</small> -->
+  <button class="add-button" type="button"><a style="text-decoration:none;color:white;" href="{% url 'company_registration' %}">Add comapny</a></button>
+ </h3></div><br>
+ 
+ <div class="page-bar">
+  <ul class="page-breadcrumb">
+      <li>
+          <i class="fa fa-home"></i>
+          <a href="{% url 'dashboard' %}">Home</a>
+          <i class="fa fa-angle-right"></i>
+      </li>
+   <li>
+          <a href="">Company List</a>
+      </li>
+  </ul>
+
+</div>
+
+<table id="test_table" class="display table table-striped table-bordered" border="1" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Company Name</th>
+        <th>Description</th>
+        <th>Address</th>
+        <th>Location</th>
+        <th>Pincode</th>
+        <th>Edit Company</th>
+        <th>Delete Company</th>
+       
+      </tr>
+    </thead>
+              
+  </table>
+  <script type="text/javascript">
+   $(document).ready(function() {
+    $.noConflict();
+   
+    $('#test_table').DataTable({
+        "ajax":"static/company.json",
+
+        "columns":[
+            {"data": "id"},
+            {"data": "company_name",
+            "render": function (data, type, full, meta){
+    return '<a href="company_detail/' + full.id + '">'+data+'</a>';
+        }},
+            {"data": "description"},
+            {"data": "company_address"},
+            {"data": "company_location"},
+            {"data": "company_pincode"},
+            {"data": "edit",
+            "render": function (data, type, full, meta){
+              if(type === 'display'){
+                    data ='<button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" type="button"><span class="glyphicon glyphicon-pencil"></span></button>';
+                       
+                }
+              return '<a href="updatecompany/' + full.id +'">'+data+'</a>';
+                }},
+                {"data": "delete",
+            "render": function (data, type, full, meta){
+              if(type === 'display'){
+                    data ='<button onclick="return confirm(\'Are you sure you want to delete this employee\')" class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" type="button"><span class="glyphicon glyphicon-trash"></span></button>';
+                        
+                }
+              return '<a href="companydelete/' + full.id +'">'+data+'</a>';
+                }},
+        
+            ]
+            
+        
+        });
+});
+         
+  </script>
+ {% endblock %}

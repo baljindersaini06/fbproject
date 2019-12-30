@@ -1,0 +1,30 @@
+{% extends 'fbcampaign/layout3.html' %}
+{% load static %}
+{% block content %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="">
+        <br><br><br><br>
+            <h2 align="center">Edit Company</h2>
+                <table align="center">
+                {{ form.as_table }}
+                </table>
+            <br>
+            <br>  
+         
+        <div class="container-login100-form-btn m-t-20" align="center">
+            <button class="button" type="submit" value="submit">
+            Update Company
+            </button>
+            <a href="{% url 'companyview' %}" class="button">Back</a> 
+            <form action="{% url 'deletecompany' %}" method="POST">
+                {% csrf_token %}
+                <td><button onclick="return confirm('Are you sure you want to delete {{ .company_name }} Company?')" class="button" type="submit">Delete</button></td>
+            </form>   
+        </div> <br>
+        
+    </div>  
+</form>
+
+{% endblock %}
