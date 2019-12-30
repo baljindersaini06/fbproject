@@ -124,7 +124,7 @@ class SignUpForm(forms.ModelForm):
    
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'phone_no', 'role')
+        fields = ('first_name', 'last_name', 'username', 'email', 'phone_no', 'role', 'campaign_title')
         
 
     def clean_email(self):

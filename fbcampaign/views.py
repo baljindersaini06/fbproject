@@ -15,7 +15,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth import get_user_model
 User = get_user_model()
-from fbcampaign.models import SiteConfiguration,SmtpConfiguration, Company, Employee
+from fbcampaign.models import SiteConfiguration,SmtpConfiguration, Company, Employee, Campaign
 from django_otp.decorators import otp_required
 from two_factor.models import PhoneDevice
 from django.contrib.sites.shortcuts import get_current_site
@@ -80,6 +80,7 @@ def group_required(group, login_url=None, raise_exception=False):
 @login_required
 def signup(request):
     a=Group.objects.all()
+    c = Campaign.objects.all()
     if request.method == 'POST':
         print("hello")
         form = SignUpForm(request.POST)
@@ -108,7 +109,7 @@ def signup(request):
     else:      
         form = SignUpForm()
         
-    return render(request, 'registration/user_registration.html', {'form': form,'a':a})
+    return render(request, 'registration/user_registration.html', {'form': form,'a':a, 'c':c})
 
 
 
@@ -555,3 +556,6 @@ def group_delete(request,id):
         b.delete()    
         messages.success(request, "group is deleted")  
         return HttpResponseRedirect(reverse('groupview'))
+
+
+#def create_campaign()

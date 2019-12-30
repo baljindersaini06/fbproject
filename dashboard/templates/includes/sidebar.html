@@ -42,7 +42,7 @@
                     </form> -->
                     
 
-                    
+                    <br>
 					<!-- END RESPONSIVE QUICK SEARCH FORM -->
 				</li>
 				<li class="start ">
@@ -347,7 +347,7 @@
 				</li> -->
 
 				<!-- END ANGULARJS LINK -->
-				<li class="heading">
+				<!-- <li class="heading">
 					<h3 class="uppercase">Features</h3>
 				</li>
 				<li>
@@ -356,34 +356,40 @@
 					<span class="title">Registration</span>
 					<span class="arrow "></span>
 					</a>
-					<ul class="sub-menu">
+					<ul class="sub-menu"> -->
 						<!-- <li>
 							<a href="form_controls_md.html">
 							<span class="badge badge-roundless badge-danger">new</span>Material Design<br>
 							Form Controls</a>
 						</li> -->
 						 
-						{% if request.user|has_group:"HR" or request.user|has_group:"Admin" %}
+						<!-- {% if request.user|has_group:"HR" or request.user|has_group:"Admin" %}
 					
 							
 						
-												<li>
+						<li>
 							<a href="{% url 'user' %}">
 							Client Registration</a>
-						</li>
-						<li>
+						</li> -->
+
+
+
+						<!-- <li>
 							<a href="{% url 'company_registration' %}">
 							Company Registration</a>
-						</li>
-						<li>
+						</li> -->
+						<!-- <li>
 							<a href="{% url 'employee_registration' %}">
 							Employee Registration</a>
-						</li>
-						<li>
+						</li> -->
+						<!-- <li>
 							<a href="{% url 'companyview' %}">
 							Company List</a>
-						</li>
-						<li>
+						</li> -->
+						
+						
+						
+						<!-- <li>
 							<a href="{% url 'userview' %}">
 							User List</a>
 						</li>
@@ -409,7 +415,11 @@
 								<a href="{% url 'companyview' %}">
 								Company List</a>
 							</li>
-						{% endif %}
+						{% endif %} -->
+
+
+
+
 						<!-- <li>
 							<a href="form_editable.html">
 							<span class="badge badge-roundless badge-warning">new</span>Form X-editable</a>
@@ -434,12 +444,12 @@
 							<a href="form_dropzone.html">
 							Dropzone File Upload</a>
 						</li> -->
-					</ul>
+					<!-- </ul> -->
 				</li>
 				<li>
-					<a href="javascript:;">
+					<a href="{% url 'user' %}">
 					<i class="icon-briefcase"></i>
-					<span class="title">Data Tables</span>
+					<span class="title">Client Registartion</span>
 					<!-- <span class="arrow "></span> -->
 					</a>
 					<!-- <ul class="sub-menu">
@@ -474,9 +484,15 @@
 					</ul> -->
 				</li>
 				<li>
-					<a href="javascript:;">
+						<a href="{% url 'userview' %}">
+						<i class="icon-briefcase"></i>
+						<span class="title">User List</span>
+						<!-- <span class="arrow "></span> -->
+						</a>
+				<li>
+					<a href="{% url 'addgroup' %}">
 					<i class="icon-wallet"></i>
-					<span class="title">Portlets</span>
+					<span class="title">Add Group</span>
 					<!-- <span class="arrow "></span> -->
 					</a>
 					<!-- <ul class="sub-menu">
@@ -502,7 +518,13 @@
 						</li>
 					</ul> -->
 				</li>
-
+				<li>
+						<a href="{% url 'groupview' %}">
+						<i class="icon-briefcase"></i>
+						<span class="title">Group List</span>
+						<!-- <span class="arrow "></span> -->
+						</a>
+				<li>
 				<!-- <li>
 					<a href="javascript:;">
 					<i class="icon-bar-chart"></i>

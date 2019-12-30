@@ -15,10 +15,20 @@ EMPLOYEE_TYPE_CHOICES = (
 )
 
 
+class Campaign(models.Model):
+    fb_campaignid = models.IntegerField(max_length=None)
+    campaign_title = models.CharField(max_length=48)
+    campaign_status = models.CharField(max_length=16)
+
+    def __str__(self):
+        return self.campaign_title
+
+
 class User(AbstractUser):
     profile_image = models.ImageField(upload_to='images/', default='images/image.jpg')
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be upto 10 digits")
     phone_no = models.CharField(validators=[phone_regex], max_length=10, blank=True) 
+    campaign_title = models.ForeignKey(Campaign, on_delete=models.CASCADE,null=True)
 
 
 class SiteConfiguration(models.Model):
@@ -71,3 +81,5 @@ class Employee(models.Model):
 
     def __str__(self):
         return self.employee_name
+
+
