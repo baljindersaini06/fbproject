@@ -82,10 +82,8 @@ def signup(request):
     a=Group.objects.all()
     c = Campaign.objects.all()
     if request.method == 'POST':
-        print("hello")
         form = SignUpForm(request.POST)
         if form.is_valid():
-            print("hi")
             user= form.save(commit=False)
             user.phone_no = form.cleaned_data.get('phone_no')
             user.is_active = False
@@ -105,7 +103,7 @@ def signup(request):
           
             email = EmailMessage(mail_subject, message, to=[to_email])
             email.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            return redirect('userview')
     else:      
         form = SignUpForm()
         
@@ -390,7 +388,7 @@ def company_view(request):
 
 
 def userview(request):
-    test_all = User.objects.all().values('id','first_name','last_name', 'username', 'email', 'phone_no', 'groups')
+    test_all = User.objects.all().values('id','first_name','last_name', 'username', 'email', 'groups')
     data={"data": list(test_all)}
     with open('static/user.json', 'w') as f:
         json.dump(data, f, indent=4)

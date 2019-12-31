@@ -26,8 +26,6 @@ class Campaign(models.Model):
 
 class User(AbstractUser):
     profile_image = models.ImageField(upload_to='images/', default='images/image.jpg')
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be upto 10 digits")
-    phone_no = models.CharField(validators=[phone_regex], max_length=10, blank=True) 
     campaign_title = models.ForeignKey(Campaign, on_delete=models.CASCADE,null=True)
 
 

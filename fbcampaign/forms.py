@@ -13,7 +13,7 @@ class UserCreateForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "username", "email", "phone_no" ,"password1", "password2")
+        fields = ("first_name", "last_name", "username", "email", "password1", "password2")
 
 
 class LoginForm(forms.ModelForm):
@@ -124,7 +124,7 @@ class SignUpForm(forms.ModelForm):
    
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'phone_no', 'role', 'campaign_title')
+        fields = ('first_name', 'last_name', 'username', 'email', 'role')
         
 
     def clean_email(self):
